@@ -3,6 +3,7 @@ const Course = ({ course }) => {
         <div>
             <Header course={course} />
             <Content parts={course.parts} />
+            <Total parts={course.parts} />
         </div>
     )
 }
@@ -28,5 +29,11 @@ const Part = ({ part }) =>
         {part.name} {part.exercises}
     </p>
 
+const Total = ({ parts }) => 
+    <h4>
+        Total exercises: {parts[0].exercises + 
+                          parts[1].exercises + 
+                          parts[2].exercises}
+    </h4>
 
 export default Course
