@@ -21,6 +21,9 @@ const Content = ({ parts }) =>
         <Part
             part={parts[2]} 
         />      
+        <Part
+            part={parts[3]}
+        />
     </>
 
 
@@ -29,11 +32,12 @@ const Part = ({ part }) =>
         {part.name} {part.exercises}
     </p>
 
-const Total = ({ parts }) => 
-    <h4>
-        Total exercises: {parts[0].exercises + 
-                          parts[1].exercises + 
-                          parts[2].exercises}
-    </h4>
+const Total = ({ parts }) => {
+    const total = parts.reduce( (sum, part) => {
+        return sum + part.exercises
+    }, 0)
+
+    return <h4>Total exercises: {total}</h4>
+}
 
 export default Course
