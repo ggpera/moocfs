@@ -1,31 +1,9 @@
-const Course = ({ course }) => {
-    return (
-        <div>
-            <Header course={course} />
-            <Content parts={course.parts} />
-            <Total parts={course.parts} />
-        </div>
-    )
-}
-
-const Header = ({ course }) => <h1>{course.name}</h1>
+const Header = ({ course }) => <h2>{course.name}</h2>
 
 const Content = ({ parts }) => 
-    <>
-        <Part
-            part={parts[0]} 
-        />
-        <Part
-            part={parts[1]} 
-        />
-        <Part
-            part={parts[2]} 
-        />      
-        <Part
-            part={parts[3]}
-        />
-    </>
-
+    parts.map(part =>
+        <Part key={part.id} part={part} />
+    )
 
 const Part = ({ part }) => 
     <p>
@@ -38,6 +16,17 @@ const Total = ({ parts }) => {
     }, 0)
 
     return <h4>Total exercises: {total}</h4>
+}
+
+const Course = ({ course }) => {
+    
+    return (
+        <div>
+            <Header course={course} />
+            <Content parts={course.parts} />
+            <Total parts={course.parts} />
+        </div>
+    )
 }
 
 export default Course
