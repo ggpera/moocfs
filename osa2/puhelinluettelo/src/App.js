@@ -6,17 +6,25 @@ const App = () => {
     ])
     const [newName, setNewName] = useState('')
 
-    const addName = (event) =>{
+    const addName = (event) => {
         event.preventDefault()
-        const nameObject = {
-            name: newName,
-        }
 
-        setPersons(persons.concat(nameObject))
-        setNewName('')
+        if (persons.some(person => person.name === newName)) {
+            alert(`${newName} is already added to the phonebook`)
+            setNewName('')
+            return
+        }
+        else {
+            const nameObject = {
+                name: newName,
+            }
+            setPersons(persons.concat(nameObject))
+            setNewName('')
+        }
     }
 
     const handleNameChange = (event) => {
+        console.log(event.target.value)
         setNewName(event.target.value)
     }
 
@@ -45,7 +53,6 @@ const App = () => {
             </div>
         </div>
     )
-
 }
 
 export default App
